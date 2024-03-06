@@ -61,6 +61,21 @@ tracking scripts to make them compatible with the cookie dialog. This can be don
 cookie-update" event and calling the tracking script's consent method accordingly, and reading the "acceptsCookies"
 property to check if the user has accepted cookies.
 
+### Generating the output
+
+To generate the output, install the dependencies and run the build script:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 build.py
+```
+
+The output will be generated in the "dist" directory. You can now add the script to your website.
+
+```html
+<script src="cookie-dialog.js"></script>
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

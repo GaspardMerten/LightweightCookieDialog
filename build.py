@@ -1,15 +1,11 @@
 import json
+import os
+import re
 import uuid
 
+import cssmin
 import htmlmin
 import rjsmin
-
-import cssmin
-import re
-
-import tomllib
-from dataclasses import dataclass, field
-from typing import List, Optional
 
 from parse_config import parse_config, Config
 
@@ -73,6 +69,9 @@ def main():
     html_file = 'src/dialog.html'  # Path to your HTML file
     output_file = 'dist/bundled.js'  # Path to your output file
     config_file = "src/config.toml"
+
+    # Create path to output file
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
     config = parse_config(config_file)
 
