@@ -1,0 +1,75 @@
+@keyframes sl {
+    0% {
+        transform: translateX(-140%);
+    }
+    80% {
+        transform: translateX(-140%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+#cookie-disabler {
+    position: fixed;
+    bottom: 20px;
+    font-family: Arial, sans-serif;
+    left: 20px;
+    background-color: white;
+    padding: 16px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: none;
+    animation: sl 2s;
+}
+
+
+#cookie-accept {
+    background-color: #000000;
+    color: white;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 10px 20px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#cookie-refuse {
+    background-color: #e3e3e3;
+    color: black;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 10px 20px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+#cookies-list {
+    text-align: left;
+    background: beige;
+    list-style: none;
+    font-size: 14px;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+    #cookie-disabler {
+        width: calc(100% - 72px);
+        max-width: none;
+        bottom: 20px;
+    }
+}

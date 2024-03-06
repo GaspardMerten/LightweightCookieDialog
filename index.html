@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <title>Cookie disabler</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="dist/bundled.js"></script>
+</head>
+<body>
+<h1>Hell world</h1>
+
+<script>
+    window.addEventListener('cookie-update',(e)=>{
+        console.log(window.acceptsCookies);
+    })
+</script>
+</body>
+</html>
