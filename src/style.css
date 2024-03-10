@@ -72,6 +72,7 @@
     border-radius: 8px
 }
 
+
 #cookies-list.active {
     max-height: calc(100vh - 250px);
     overflow-y: auto;
@@ -182,6 +183,8 @@
 }
 
 #cookies-list > p {
+    margin-top: 0;
+
     color: #adadad;
     font-size: 14px;
 }
