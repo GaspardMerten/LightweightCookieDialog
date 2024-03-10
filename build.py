@@ -2,7 +2,7 @@ import json
 import os
 import re
 import uuid
-
+import gzip
 import cssmin
 import htmlmin
 import rjsmin
@@ -11,6 +11,12 @@ from parse_config import parse_config, Config
 
 id_regex = re.compile(r'id="([\w-]+)"')  # Match all ids in the HTML content
 
+class JsonDumpEncoder(json.JSONEncoder):
+    def default(self, o):
+        # If is dataclass, convert to dict
+        if hasattr(o, '__dict__'):
+            return o.__dict__
+        return json.JSONEncoder.default(self, o)
 
 def minify_css(css_file):
     with open(css_file, 'r') as f:
@@ -36,11 +42,9 @@ def replace_html_and_css(config: Config, js_file, html_file, css_file, output_fi
     js_content = js_content.replace("[HTML]", html_content)
     js_content = js_content.replace("[CSS]", minified_css)
 
-    cookie_html = ""
-    for cookie in config.cookies:
-        cookie_html += "<li>{}</li>".format(cookie.name)
 
-    js_content = js_content.replace("[COOKIES]", cookie_html)
+
+    js_content = js_content.replace("[COOKIES]", json.dumps(config.cookies, cls=JsonDumpEncoder))
     js_content = js_content.replace("[FALLBACK_LANG]", config.general.fallback)
     js_content = js_content.replace("[SCRIPT]", "")
     # Build the JS translation object
@@ -61,6 +65,11 @@ def replace_html_and_css(config: Config, js_file, html_file, css_file, output_fi
 
     with open(output_file, 'w') as f:
         f.write(rjsmin.jsmin(js_content))
+
+    gzip_file = output_file + ".gz"
+    with open(output_file, 'rb') as f_in:
+        with gzip.open(gzip_file, 'wb') as f_out:
+            f_out.writelines(f_in)
 
 
 def main():
