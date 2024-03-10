@@ -8,8 +8,6 @@ fallback = "en"
 text = "Nous utilisons Google Analytics et Facebook pour mieux vous servir. Acceptez-vous?"
 accept = "Accepter"
 decline = "Refuser"
-cookies_url_name = "Politique de cookies"
-cookies_url = "https://www.yourwebsite.com/fr/cookies"
 
 
 [general.en]
@@ -17,16 +15,12 @@ cookies_url = "https://www.yourwebsite.com/fr/cookies"
 text = "We use Google Analytics and Facebook to better serve you. Do you accept?"
 accept = "Accept"
 decline = "Decline"
-cookies_url_name = "Cookie policy"
-cookies_url = "https://www.yourwebsite.com/en/cookies"
 
 [general.nl]
 
 text = "We gebruiken Google Analytics en Facebook om u beter van dienst te zijn. Accepteert u?"
 accept = "Accepteren"
 decline = "Weigeren"
-cookies_url_name = "Cookiebeleid"
-cookies_url = "https://www.yourwebsite.com/nl/cookies"
 
 [cookies.google_analytics]
 
