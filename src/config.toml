@@ -31,16 +31,16 @@ scope = "third-party"
 
 [cookies.google_analytics.fr]
 
-description = "Google Analytics est un service d'analyse Web fourni par Google Inc. (« Google »). Google utilise les données collectées pour suivre et examiner l'utilisation de ce site, préparer des rapports sur ses activités et les partager avec d'autres services Google. Google peut utiliser les données collectées pour contextualiser et personnaliser les annonces de son propre réseau publicitaire."
+description = "Google Analytics est un service d'analyse Web fourni par Google Inc. (« Google »)."
 type = "statistiques"
 [cookies.google_analytics.en]
 
-description = "Google Analytics is a web analysis service provided by Google Inc. (“Google”). Google utilizes the Data collected to track and examine the use of this site, to prepare reports on its activities and share them with other Google services. Google may use the Data collected to contextualize and personalize the ads of its own advertising network."
+description = "Google Analytics is a web analysis service provided by Google Inc. (“Google”)."
 type = "statistics"
 
 [cookies.google_analytics.nl]
 
-description = "Google Analytics is een webanalyse-service die wordt aangeboden door Google Inc. (“Google”). Google gebruikt de verzamelde gegevens om het gebruik van deze site te volgen en te onderzoeken, om rapporten over zijn activiteiten op te stellen en deze te delen met andere Google-services. Google kan de verzamelde gegevens gebruiken om de advertenties van zijn eigen advertentienetwerk te contextualiseren en personaliseren."
+description = "Google Analytics is een webanalyse-service die wordt aangeboden door Google Inc. (“Google”)."
 type = "statistieken"
 
 [cookies.facebook]
@@ -51,15 +51,15 @@ scope = "third-party"
 
 [cookies.facebook.fr]
 
-description = "Facebook est un réseau social et un service de publicité fourni par Facebook Inc. Facebook utilise les données collectées pour suivre et examiner l'utilisation de ce site, préparer des rapports sur ses activités et les partager avec d'autres services Facebook. Facebook peut utiliser les données collectées pour contextualiser et personnaliser les annonces de son propre réseau publicitaire."
+description = "Facebook est un réseau social et un service de publicité fourni par Meta Inc."
 type = "publicité"
 
 [cookies.facebook.en]
 
-description = "Facebook is a social network and advertising service provided by Facebook Inc. Facebook uses the Data collected to track and examine the use of this site, to prepare reports on its activities and share them with other Facebook services. Facebook may use the Data collected to contextualize and personalize the ads of its own advertising network."
+description = "Facebook is a social network and advertising service provided by Meta Inc."
 type = "advertising"
 
 [cookies.facebook.nl]
 
-description = "Facebook is een sociaal netwerk en een advertentieservice die wordt aangeboden door Facebook Inc. Facebook gebruikt de verzamelde gegevens om het gebruik van deze site te volgen en te onderzoeken, om rapporten over zijn activiteiten op te stellen en deze te delen met andere Facebook-services. Facebook kan de verzamelde gegevens gebruiken om de advertenties van zijn eigen advertentienetwerk te contextualiseren en personaliseren."
+description = "Facebook is een sociaal netwerk en een advertentieservice die wordt aangeboden door Meta Inc."
 type = "advertising"
