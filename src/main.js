@@ -86,10 +86,8 @@ function readConsent() {
 
     if (cookie) {
         cookie = cookie.split('=')[1].split(';')[0];
-        console.log(cookie);
         const cookies = cookie.split(',');
         for (const c of cookies) {
-            console.log(c);
             const [key, value] = c.split('|');
             window.cookies[key] = value === 'true';
         }
@@ -99,7 +97,6 @@ function readConsent() {
 
 
 function init() {
-    console.log('init');
     let html = `[HTML]`;
     const css = `<style>[CSS]</style>`;
     const translations = [TRANSLATIONS];
@@ -108,7 +105,8 @@ function init() {
 
     lang = lang.split('-')[0].split('_')[0].split(',')[0];
 
-    const translation = translations[lang] || translations['[FALLBACK_LANG]'];
+    let fallBackLang = '[FALLBACK_LANG]';
+    const translation = translations[lang] || translations[fallBackLang];
 
     for (const key in translation) {
         html = html.replace(`[${key.toUpperCase()}]`, translation[key]);
@@ -122,8 +120,13 @@ function init() {
     for (const cookie of cookies) {
         let li = document.createElement('li');
         li.onclick = () => toggle(cookie.public_id);
-        li.innerHTML = `<p>${cookie.name} <i>(${cookie.type_text[lang] ?? cookie.type})</i></p><div class='checkbox-wrapper-2'><input id='${cookie.public_id}' type='checkbox' disabled='disabled' checked="checked" class='sc-gJwTLC ikxBAC'></div>`;
+        li.innerHTML = `<p>${cookie.name} <i>(${cookie.type_text[lang] ?? cookie.type_text[fallBackLang] ?? cookie.type})</i></p><div class='checkbox-wrapper-2'><input id='${cookie.public_id}' type='checkbox' disabled='disabled' checked="checked" class='sc-gJwTLC ikxBAC'></div>`;
         html.querySelector('ul').appendChild(li);
+        let p = document.createElement('p');
+        p.innerHTML = cookie.description[lang] ?? cookie.description[fallBackLang];
+        if (p.textContent.length > 0) {
+            html.querySelector('ul').appendChild(p);
+        }
     }
 
     if (translation.cookies_url) {
@@ -157,6 +160,9 @@ function init() {
     document.getElementById('cookie-refuse').addEventListener('click', () => {
         document.getElementById('cookie-disabler').style.display = 'none';
         window.cookies = {};
+        for (const cookie of cookies) {
+            window.cookies[cookie.public_id] = false;
+        }
         storeConsent();
         updateCookies();
     });

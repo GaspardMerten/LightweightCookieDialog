@@ -72,6 +72,7 @@ def replace_html_and_css(config: Config, js_file, html_file, css_file, output_fi
             f_out.writelines(f_in)
 
 
+
 def main():
     css_file = 'src/style.css'  # Path to your CSS file
     js_file = 'src/main.js'  # Path to your JavaScript file
@@ -85,6 +86,8 @@ def main():
     config = parse_config(config_file)
 
     replace_html_and_css(config, js_file, html_file, css_file, output_file)
+
+
 
 
 if __name__ == "__main__":
