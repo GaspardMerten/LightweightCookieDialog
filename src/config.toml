@@ -5,7 +5,7 @@ fallback = "en"
 
 [general.fr]
 
-text = "Nous utilisons Google Analytics et Facebook pour mieux vous servir. Acceptez-vous?"
+text = "Nous utilisons des 🍪 pour vous offrir une meilleure expérience, vous pouvez les accepter ou les refuser, c'est vous qui choisissez."
 accept = "Accepter"
 decline = "Refuser"
 

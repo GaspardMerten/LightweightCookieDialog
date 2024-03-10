@@ -1,24 +1,25 @@
 const cookies = [COOKIES];
-
-
-function toggle(id) {
-    const element = document.getElementById(id);
-    element.checked = !element.checked;
-}
-
-
 window.dataLayer = window.dataLayer || [];
 
 function gtag() {
     dataLayer.push(arguments);
 }
 
+window.dataLayer = window.dataLayer || [];
+
+
 gtag('consent', 'default', {
     'ad_storage': 'denied',
     'ad_user_data': 'denied',
     'ad_personalization': 'denied',
-    'analytics_storage': 'denied'
+    'analytics_storage': 'denied',
+    'wait_for_update': 3000
 });
+
+function toggle(id) {
+    const element = document.getElementById(id);
+    element.checked = !element.checked;
+}
 
 
 function enableScript(id) {
@@ -39,24 +40,29 @@ function enableScript(id) {
 }
 
 const updateCookies = () => {
-    // wait for 10ms
-    setTimeout(() => {
-        readConsent();
-        window.dispatchEvent(new Event('cookie-update'));
-        for (const cookie of cookies) {
-            if (cookie.is_ga) {
-                gtag('consent', 'update', {
-                    'ad_storage': 'granted',
-                    'ad_user_data': 'granted',
-                    'ad_personalization': 'granted',
-                    'analytics_storage': 'granted'
-                })
-            } else if (window.cookies[cookie.public_id]) {
-                enableScript(cookie.public_id);
-            }
-        }
-    }, 10);
-};
+        // wait for 10ms
+        setTimeout(() => {
+                readConsent();
+                window.dispatchEvent(new Event('cookie-update'));
+                for (const cookie of cookies) {
+                    if (window.cookies[cookie.public_id]) {
+                        if (cookie.is_ga) {
+                            gtag('consent', 'update', {
+                                'ad_storage': 'granted',
+                                'ad_user_data': 'granted',
+                                'ad_personalization': 'granted',
+                                'analytics_storage': 'granted'
+                            })
+                        } else {
+                            enableScript(cookie.public_id);
+                        }
+                    }
+                }
+            }, 10
+        )
+        ;
+    }
+;
 
 function storeConsent() {
     // Store the window.cookies in a cookie
@@ -92,8 +98,8 @@ function readConsent() {
 }
 
 
-// Init after window load
-window.onload = () => {
+function init() {
+    console.log('init');
     let html = `[HTML]`;
     const css = `<style>[CSS]</style>`;
     const translations = [TRANSLATIONS];
@@ -155,5 +161,14 @@ window.onload = () => {
         updateCookies();
     });
 
-    updateCookies();
-};
+}
+
+updateCookies();
+
+
+// Call the init function after the page has loaded
+document.addEventListener('DOMContentLoaded', init);
+// If the page has already loaded, call the init function
+if (document.readyState === 'complete' || (document.readyState !== 'loading' && !document.documentElement.doScroll)) {
+    init();
+}
