@@ -11,12 +11,30 @@ from parse_config import parse_config, Config
 
 id_regex = re.compile(r'id="([\w-]+)"')  # Match all ids in the HTML content
 
+root_vars = {
+    "cookie-bg": "#ffffff",
+    "cookie-color": "#525252",
+    "cookie-btn-bg": "#000000",
+    "cookie-btn-color": "#ffffff",
+    "cookie-btn-refuse-bg": "#e3e3e3",
+    "cookie-btn-refuse-color": "#000",
+    "cookie-list-bg": "beige",
+    "cookie-text-color": "#adadad",
+    "cookie-checkbox-bg": "#dfe1e4",
+    "cookie-checkbox-color": "#000",
+    "cookie-checkbox-hover-bg": "#c9cbcd",
+    "cookie-checkbox-hover-color": "#000",
+    "cookie-checkbox-checked-bg": "#bfad65",
+}
+
+
 class JsonDumpEncoder(json.JSONEncoder):
     def default(self, o):
         # If is dataclass, convert to dict
         if hasattr(o, '__dict__'):
             return o.__dict__
         return json.JSONEncoder.default(self, o)
+
 
 def minify_css(css_file):
     with open(css_file, 'r') as f:
@@ -34,6 +52,10 @@ def minify_html(html_file):
 
 def replace_html_and_css(config: Config, js_file, html_file, css_file, output_file):
     minified_css = minify_css(css_file)
+    for var, value in root_vars.items():
+        minified_css = minified_css.replace(f"var(--{var})", value)
+    # Remove the :root declaration
+    minified_css = re.sub(r":root\s*{[^}]*}", "", minified_css)
     html_content = minify_html(html_file)
 
     with open(js_file, 'r') as f:
@@ -41,8 +63,6 @@ def replace_html_and_css(config: Config, js_file, html_file, css_file, output_fi
 
     js_content = js_content.replace("[HTML]", html_content)
     js_content = js_content.replace("[CSS]", minified_css)
-
-
 
     js_content = js_content.replace("[COOKIES]", json.dumps(config.cookies, cls=JsonDumpEncoder))
     js_content = js_content.replace("[FALLBACK_LANG]", config.general.fallback)
@@ -72,7 +92,6 @@ def replace_html_and_css(config: Config, js_file, html_file, css_file, output_fi
             f_out.writelines(f_in)
 
 
-
 def main():
     css_file = 'src/style.css'  # Path to your CSS file
     js_file = 'src/main.js'  # Path to your JavaScript file
@@ -86,8 +105,6 @@ def main():
     config = parse_config(config_file)
 
     replace_html_and_css(config, js_file, html_file, css_file, output_file)
-
-
 
 
 if __name__ == "__main__":

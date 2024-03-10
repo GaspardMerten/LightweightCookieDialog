@@ -1,3 +1,19 @@
+:root {
+    --cookie-bg: #ffffff;
+    --cookie-color: #525252;
+    --cookie-btn-bg: #000000;
+    --cookie-btn-color: #ffffff;
+    --cookie-btn-refuse-bg: #e3e3e3;
+    --cookie-btn-refuse-color: #000;
+    --cookie-list-bg: beige;
+    --cookie-text-color: #adadad;
+    --cookie-checkbox-bg: #dfe1e4;
+    --cookie-checkbox-color: #000;
+    --cookie-checkbox-hover-bg: #c9cbcd;
+    --cookie-checkbox-hover-color: #000;
+    --cookie-checkbox-checked-bg: #bfad65;
+}
+
 #cookie-accept, #cookie-refuse {
     border-radius: 8px;
     padding: 10px 20px;
@@ -19,12 +35,14 @@
     }
 }
 
+
 #cookie-disabler {
     position: fixed;
     bottom: 20px;
     font-family: Arial, sans-serif;
     left: 20px;
-    background-color: #fff;
+    background-color: var(--cookie-bg);
+    color: var(--cookie-color);
     padding: 16px;
     max-width: 400px;
     text-align: center;
@@ -34,15 +52,19 @@
     animation: 2s sl
 }
 
+#cookie-disabler > p {
+    margin-top: 4px;
+}
+
 #cookie-accept {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--cookie-btn-bg);
+    color: var(--cookie-btn-color);
     border: none
 }
 
 #cookie-refuse {
-    background-color: #e3e3e3;
-    color: #000;
+    background-color: var(--cookie-btn-refuse-bg);
+    color: var(--cookie-btn-refuse-color);
     border: none
 }
 
@@ -64,7 +86,7 @@
     overflow: hidden;
     transition: max-height .3s, padding .5s, margin .5s;
     text-align: left;
-    background: beige;
+    background: var(--cookie-list-bg);
     list-style: none;
     font-size: 14px;
     padding: 0;
@@ -89,7 +111,7 @@
 }
 
 #cookies-list li i {
-    color: #747474
+    color: var(--cookie-text-color);
 }
 
 #cookies-list li * {
@@ -108,7 +130,7 @@
 .checkbox-wrapper-2 .ikxBAC {
     pointer-events: none;
     appearance: none;
-    background-color: #dfe1e4;
+    background-color: var(--cookie-checkbox-bg);
     border-radius: 72px;
     border-style: none;
     flex-shrink: 0;
@@ -147,12 +169,12 @@
 }
 
 .checkbox-wrapper-2 .ikxBAC:hover {
-    background-color: #c9cbcd;
+    background-color: var(--cookie-checkbox-hover-bg);
     transition-duration: 0s
 }
 
 .checkbox-wrapper-2 .ikxBAC:checked, .checkbox-wrapper-2 .ikxBAC:checked:hover {
-    background-color: #bfad65
+    background-color: var(--cookie-checkbox-checked-bg)
 }
 
 .checkbox-wrapper-2 .ikxBAC:checked::after {
@@ -163,12 +185,12 @@
 .checkbox-wrapper-2 :focus:not(.focus-visible) {
     outline: 0
 }
-
 @media only screen and (max-width: 600px) {
     #cookie-disabler {
         left: 0;
         padding: 16px;
-        width: calc(100% - 32px);
+        width: calc(100%);
+        box-sizing: border-box;
         bottom: 0;
         border-radius: 0;
         max-width: none;
@@ -176,7 +198,7 @@
 }
 
 .cookies-link {
-    color: #adadad;
+    color: var(--cookie-text-color);
     margin-top: 10px;
     font-weight: 500;
     font-size: 12px
@@ -184,7 +206,6 @@
 
 #cookies-list > p {
     margin-top: 0;
-
-    color: #adadad;
+    color: var(--cookie-text-color);
     font-size: 14px;
 }
